@@ -19,7 +19,7 @@ export const TopTabNavigator = () => {
         backgroundColor: '#000',
       }}
       tabBarOptions={{
-        activeTintColor: '#FF4502',
+        activeTintColor: '#fff',
         pressColor: '#494949',
         showIcon: false,
         indicatorStyle: {

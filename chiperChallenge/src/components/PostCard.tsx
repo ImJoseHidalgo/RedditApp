@@ -37,11 +37,11 @@ const PostCard = ({ post }: Props) => {
         <View style={ styles.contentBottom}>
           <View style={ styles.withIcon }>
             <Text style={ styles.text }>{data.num_comments}</Text>
-            <Icon name="chatbubble-outline" size={15} color="#fff" />
+            <Icon name="chatbubble-outline" size={15} color="#fff" style={ styles.icon } />
           </View>
           <View style={ styles.withIcon }>
             <Text style={ [styles.text, styles.score] }>{data.score}</Text>
-            <Icon name="star-outline" size={15} color="#ff4800" />
+            <Icon name="star-outline" size={15} color="#ff4800" style={ styles.icon } />
           </View>
         </View>
       </View>
@@ -82,9 +82,11 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   text: {
-    flex: 1,
     color: '#c4c4c4',
     fontSize: 13,
+  },
+  icon: {
+    marginLeft: 5,
   },
   withIcon: {
     flexDirection: 'row',
