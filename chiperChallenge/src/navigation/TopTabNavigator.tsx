@@ -16,7 +16,7 @@ export const TopTabNavigator = () => {
     <Tab.Navigator
       style={{ paddingTop: top }}
       sceneContainerStyle={{
-        backgroundColor: '#fff',
+        backgroundColor: '#000',
       }}
       tabBarOptions={{
         activeTintColor: '#FF4502',

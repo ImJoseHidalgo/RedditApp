@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Image, Text, View } from 'react-native'
 import { Data } from '../interfaces/redditInterface'
 import { useNavigation } from '@react-navigation/core'
@@ -10,12 +11,12 @@ interface Props {
 }
 
 const PostCard = ({ post }: Props) => {
-
+  
   const { data } = post;
   const navigation = useNavigation();
-
+  
   const { dateOfCreation } = useDate(data.created_utc);
-    
+  
   return (
     <TouchableOpacity 
       onPress={ () => navigation.navigate('WebViewScreen', data)}
@@ -25,13 +26,23 @@ const PostCard = ({ post }: Props) => {
       <Image source={{ uri: data.thumbnail }} style={ styles.image } />
       <View style={ styles.content }>
         <View style={ styles.contentTop }>
-          <Text style={ styles.text }>{data.author}</Text>
-          <Text style={ [styles.text, styles.time] }>{dateOfCreation}</Text>
+          <View>
+            <Text style={ styles.text }>{data.author}</Text>
+          </View>
+          <View>
+            <Text style={ styles.text }>{dateOfCreation}</Text>
+          </View>
         </View>
         <Text style={ [styles.text, styles.title] }>{data.title}</Text>
         <View style={ styles.contentBottom}>
-          <Text style={ styles.text }>{data.num_comments}</Text>
-          <Text style={ [styles.text, styles.score] }>{data.score}</Text>
+          <View style={ styles.withIcon }>
+            <Text style={ styles.text }>{data.num_comments}</Text>
+            <Icon name="chatbubble-outline" size={15} color="#fff" />
+          </View>
+          <View style={ styles.withIcon }>
+            <Text style={ [styles.text, styles.score] }>{data.score}</Text>
+            <Icon name="star-outline" size={15} color="#ff4800" />
+          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -75,8 +86,9 @@ const styles = StyleSheet.create({
     color: '#c4c4c4',
     fontSize: 13,
   },
-  time: {
-    // backgroundColor: 'red',
+  withIcon: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   score: {
     color: '#ff4800',
