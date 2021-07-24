@@ -8,10 +8,14 @@ export const usePosts = (rute: string) => {
   const [posts, setPosts] = useState<Data[]>([]);
 
   const getPosts = async () => {
-    const res = await redditApi.get<RedditAPIResponse>(rute);
-    const posts = res.data.data.children;
-    setPosts(posts);
-    setIsLoading(false);
+    try {
+      const res = await redditApi.get<RedditAPIResponse>(rute);
+      const posts = res.data.data.children;
+      setPosts(posts);
+      setIsLoading(false);
+    } catch (error) {
+      console.log('Parece q hice demaciados llamados a la API y me bloqueo (?', error);
+    }
   };
 
   useEffect(() => {
