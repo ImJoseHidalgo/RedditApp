@@ -4,10 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import WebViewScreen from '../screens/WebViewScreen';
 import { PostData } from '../interfaces/redditInterface';
 import { TopTabNavigator } from './TopTabNavigator';
-import { ActivityIndicator } from 'react-native';
 
 export type RootStackParams = {
-  HomeScreen: undefined;
+  TopTabNavigator: undefined;
   WebViewScreen: PostData;
 }
 
@@ -25,7 +24,6 @@ export const NavigationController = () => {
           backgroundColor: '#000',
         },
         headerTintColor: '#FF4502',
-        
       }}
     >
       <Stack.Screen name="Reddit" component={TopTabNavigator} />

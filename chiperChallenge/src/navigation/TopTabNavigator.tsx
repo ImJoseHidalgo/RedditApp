@@ -1,10 +1,11 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import NewPostsScreen from '../screens/NewsPostsScreen';
 import HotPostsScreen from '../screens/HotPostsScreen';
 import TopsPostsScreen from '../screens/TopsPostsScreen';
 import ControversialsScreen from '../screens/ControversialsScreen';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -35,7 +36,7 @@ export const TopTabNavigator = () => {
       <Tab.Screen name="New" component={NewPostsScreen} />
       <Tab.Screen name="Top" component={TopsPostsScreen} />
       <Tab.Screen name="Hot" component={HotPostsScreen} />
-      <Tab.Screen name="polemic" component={ControversialsScreen} />
+      <Tab.Screen name="Polemic" component={ControversialsScreen} />
     </Tab.Navigator>
   );
 }

@@ -1,14 +1,19 @@
-import React from 'react'
-import { ActivityIndicator, FlatList, View, TouchableOpacity, Text } from 'react-native';
-// import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import { ActivityIndicator, FlatList, View } from 'react-native';
 
 import PostCard from '../components/PostCard';
-import { usePosts } from '../hooks/usePosts'
+import { usePosts } from '../hooks/usePosts';
 
 const HotPostsScreen = () => {
-  const { posts, isLoading } = usePosts('/hot.json');
-  // const { top } = useSafeAreaInsets();
-  
+  const { posts, isLoading, getPosts } = usePosts('/hot.json');
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await getPosts();
+    setRefreshing(false);
+  };
+
   if(isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center', backgroundColor: 'black' }}>
@@ -26,6 +31,8 @@ const HotPostsScreen = () => {
         )}
         keyExtractor={post => post?.data?.id.toString()}
         showsVerticalScrollIndicator={false}
+        refreshing={refreshing}
+        onRefresh={onRefresh}
       />
     </View>
   )
